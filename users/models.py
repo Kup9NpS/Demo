@@ -2,7 +2,7 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from utils.witgets import JasnyImageModelField, MyPhoneField
+from utils.witgets import MyPhoneField
 from django.core.mail import send_mail
 from django.utils import timezone
 
@@ -80,7 +80,7 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
-    # REGISTRATION_FIELDS = ['avatar'] + REQUIRED_FIELDS + ['sex'] + ['vkuserid'] + ['bdate'] + ['phone'] + [USERNAME_FIELD] + ['password']
+    REGISTRATION_FIELDS = ['avatar'] + REQUIRED_FIELDS + ['sex'] + ['vkuserid'] + ['bdate'] + ['phone'] + [USERNAME_FIELD] + ['password']
 
     class Meta:
         verbose_name = 'Игрок'
