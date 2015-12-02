@@ -14,8 +14,8 @@ class UserLoginForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     # TODO: Override all error messages
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Подтвердите пароль', widget=forms.PasswordInput)
     class Meta:
         model = User
         fields = User.REGISTRATION_FIELDS

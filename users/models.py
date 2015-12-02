@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.utils import timezone
 
 
+
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password, is_superuser, is_staff, **extra_fields):
         now = timezone.now()
@@ -80,7 +81,7 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
-    REGISTRATION_FIELDS = ['avatar'] + REQUIRED_FIELDS + ['sex'] + ['vkuserid'] + ['bdate'] + ['phone'] + [USERNAME_FIELD] + ['password']
+    REGISTRATION_FIELDS = REQUIRED_FIELDS + ['sex'] + ['vkuserid'] + ['bdate'] + ['phone'] + [USERNAME_FIELD]
 
     class Meta:
         verbose_name = 'Игрок'
@@ -147,3 +148,15 @@ class Activation(models.Model):
 
     def __unicode__(self):
         return self.email
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(max_length=40, blank=True)
+    key_expires = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural=u'User profiles'

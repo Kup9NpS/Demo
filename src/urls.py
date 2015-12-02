@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user/login/$', 'users.views.login_view', name='login_view'),
     url(r'^user/logout/$', 'users.views.logout_view', name='logout_view'),
+    url(r'^user/register/$', 'users.views.register_user', name='register_view'),
 ]

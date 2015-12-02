@@ -116,3 +116,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 SITE_ID = 1
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kup9python@gmail.com'
+EMAIL_HOST_PASSWORD = 'zippa321'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'kup9python@gmail.com'
