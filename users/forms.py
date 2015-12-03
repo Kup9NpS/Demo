@@ -21,7 +21,7 @@ class UserRegistrationForm(forms.ModelForm):
         fields = User.REGISTRATION_FIELDS
         widgets = {'vkuserid': forms.HiddenInput(),
                    'password': forms.PasswordInput(render_value=False),
-                   'email': forms.EmailInput({'readonly': 'True'}),
+                   'email': forms.EmailInput(),
                    'avatar': forms.ImageField()}
 
     def clean_password2(self):
@@ -32,10 +32,15 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Passwords don't match")
         return password2
 
-    def clean_password(self):
-        value = self.cleaned_data['password']
-        validate_password(value)
-        return value
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(UserRegistrationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.is_active = False
+            user.save()
+        return user
 
 
 class UserCreationForm(forms.ModelForm):
@@ -70,6 +75,7 @@ class UserCreationForm(forms.ModelForm):
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
+            user.is_active = False
             user.save()
         return user
 

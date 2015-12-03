@@ -117,9 +117,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 SITE_ID = 1
 
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'info@sportcourts.ru'
+# EMAIL_HOST_PASSWORD = 'courtssport2'
+# EMAIL_SUBJECT_PREFIX = '[SPORTCOURTS] '
+# ADMINS = ('Vitaliy', 'harchenko.grape@gmail.com', 'Kup9', 'kup9python@gmail.com')
+
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'kup9python@gmail.com'
 EMAIL_HOST_PASSWORD = 'zippa321'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'kup9python@gmail.com'
