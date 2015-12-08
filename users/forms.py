@@ -7,6 +7,7 @@ from .models import User
 
 User = get_user_model()
 
+
 class UserLoginForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=150)
     password = forms.CharField(label='Password', widget=forms.PasswordInput())
@@ -85,10 +86,5 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'last_name', 'is_active', 'is_admin')
+        fields = ['avatar', 'first_name', 'last_name', 'sex', 'bdate', 'phone', 'weight', 'height']
 
-    def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
-        return self.initial["password"]

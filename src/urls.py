@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-# from users.views import
+from users.views import UserListView, UserDetailView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user/login/$', 'users.views.login_view', name='login_view'),
     url(r'^user/logout/$', 'users.views.logout_view', name='logout_view'),
     url(r'^user/register/$', 'users.views.register_user', name='register_view'),
+    url(r'^user/list/$', UserListView.as_view(), name='user_list_view'),
+    url(r'^user/(?P<pk>\d+)/$', UserDetailView.as_view(), name='user_detail_view'),
+    url(r'^user/(?P<pk>\d+)/edit$', 'users.views.user_edit_profile', name='user_edit_view'),
+    # url(r'^user/list/$', 'users.views.user_list_view', name='user_list_view'),
 ]

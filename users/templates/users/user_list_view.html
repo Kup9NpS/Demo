@@ -1,0 +1,13 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<h2>Entries:</h2>
+{{query}}
+{% for instance in object_list %}
+  <li>{{ instance.first_name }}
+<li>{{ instance.last_name }}
+<li>{{ instance.phone }}
+
+
+{% endfor %}
+{% endblock %}
